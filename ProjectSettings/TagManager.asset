@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - PlayCanvas
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: PlayCanvas
+    uniqueID: 4240432117
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Doughnuts
+    uniqueID: 567116667
+    locked: 0
+  - name: Cookies
+    uniqueID: 1587720079
+    locked: 0
+  - name: Projectiles
+    uniqueID: 2872182617
+    locked: 0
+  - name: UI
+    uniqueID: 571864205
+    locked: 0

@@ -1,0 +1,39 @@
+----------------> Save System <---------------
+
+Description: A package that help you save and load data of the game.
+
+Folders Content:
+	- Docs -> Examples and how_to_use.
+	- Scripts -> All the scripts that is used in the package.
+
+When to use:
+	- Use when some data of the game need be saved, even when game is quitted.
+
+How to use:
+	- To save something you need a serializable class that inherit from Data class. Go in "Docs/Example/LevelData" or "Docs/Example/HealthData.cs" to see an example.
+
+	- Use "int accessKey = SaveSystem.SaveDataNew(someData)" to save the data in a new key. "SaveDataNew" will return a key to load that data later, so store it and use later.
+
+	- Or use "SaveSystem.SaveDataIn(someData, someKey)" to save the data in an existing key (overwriting the previous data). If the key not exists,
+		a new path will be created with that key. Use that key to load the data later. 
+
+	- To load data, use "SaveSystem.Load(accessKey) as myMasterDataClass" and store it. Use the same key that you saved the data to access it. 
+
+	- To delete data, use "SaveSystem.DeleteKey(someKey)" to delete a specif key. Returns true if key exists and false if key not found (not throw an exception).
+		Or use "SaveSystem.DeleteAllKeys()" to delete all keys (and all data) of the game. [!!ALERT!!: Deleting data is dangerous, you cannot undo this. Be careful.]
+
+	-> Go in "Docs/Example/UI_Functions.cs" to see an example of saving and loading data.
+	
+	* Always store the keys you use, otherwise you'll cannot load the data later.
+	* You can organize different data classes in one master data class.  Go in "Docs/Example/GameData.cs" to see an example.
+	* All subclasses of Data need has [System.Serializable] attribute. Go in "Docs/Example/LevelData" to see an example.
+	* PS: You can only save serializable types (c# types, not unity types). Ex: If you have a Vector3, save it like a float[3].
+		Go in "Docs/Example/PosData.cs" to see an example.
+
+Script Reference:
+	NOT MONO:
+		Data -> Base class for all data. All subclasses need has [System.Serializable] to be serializable. 
+		[Where to use -> Use to make subclasses for save your game data.]
+
+		SaveSystem -> A static class that can save and load data. 
+		[Where to use -> Use to save and load your data (subclass of Data).]

@@ -1,0 +1,48 @@
+------------- PathFinding module ---------------
+
+Step 1 -> 'Allow unsafe code' in player settings.
+Step 2 -> Install 'Jobs preview.3 - 0.2.8' package in package manager preview packages.
+Step 3 -> Create a empty gameObject and add the 'PathFindingManager' component.
+[!Tip!] -> If using tilemap composite collider, use polygon Geometry Type on composite collider.
+[!Tip!] -> You can use the 'DataKeyAttribute' in your own scripts to make a selection popup of all existent keys in your game.
+[!Tip!] -> SaveKeyType is used to not have to deserialize every time that you use a key (a key that is constantly used or used more than one). Remember: Serialization is perfomance costly.
+
+Use Topdown path finding:
+	Step 4 -> Choose the topdown option.
+	Step 5 -> Choose 'Dynamic' grid to not save the grid and just use the atual grid, or choose 'Managed' grid to save your grid in a key.
+	Step 6 -> Configure your grid.
+	Step 7 -> Add the premade TopdownAI script to yout AI gameObject, or add the seeker script to your AI gameObject and code your own movement logic.
+	[!Tip!] -> When calling seeker to find a path, you have to choose between passing a key (use a saved grid) or not (use the atual grid). They work together with the GridType ('Dynamic' or 'Managed') that you
+				have configured.
+	
+
+Use Platformer path finding:
+	[Configuring the key]
+	Step 4 -> Choose the platformer option.
+	Step 5 -> Configure the grid options.
+	Step 6 -> Select or create a new key to edit. This key will be created with the current grid configuration. When a key has edges, they will appear below key options. You can create how many keys you want.
+
+	[Configuring the AI]
+	// You will need create 4 scripts to setup your AI: [MyAIFrame, MyAIApplyInput, MyAIController, MyAIReadAndRecordInput]
+
+
+	Step 7 -> Create a script that derives from 'PlatformerFrame'. This script will store the data of one frame of your AI and needs be marked as Serializable. [Ex: bool pressingJump; int moveDir; etc]
+
+	Step 8 -> Create a script that derives from 'MonoBehaviour'. This script will apply (but not read) the inputs of your AI. It will contain methods like 'SetJump(bool isJumping); SetMove(int dir); etc'. 
+				These methods will be called by a 'ReadAndRecord' script.
+
+	Step 9 -> Create a script that derives from 'PlatformerAI' abstract class. This script will receive the recorded frames from the 'ReadAndRecord' script that you will create. 
+				You will need to implement at least two methods: 'GetPathToTarget' -> Is where you call seeker.FindPath. You can put your own logic on it.
+																 'Move' -> Is where you move your AI based on the recorded frames. Code your own move logic.
+																  [!Tip!] -> When coding this script, will probably be better if you override 'VerifyIfNeedAtualizePath' and only verify if your character is grounded.
+																				(This will fix strange movement bugs.)
+
+	Step 10 -> Create a script that derives from 'ReadAndRecord' class. This script will read the developer inputs and pass to the 'ApplyInput' script, when RecordMode is enabled. Code your input system, record your 
+					frames and them send the recorded data to the 'PlatformerAI' script that you have created using the 'SendGraphData' abstract method.
+					
+	Step 11 -> Add the MyAIController, MyAIReadAndRecordInput and MyAIApplyInput to your AI gameObject.
+
+	Step 12 -> Use your AI and have fun! Just enable 'Record'(MyAIController) if you want to record, or enable 'Follow'(MyAIController) if you want your AI to follow.
+
+
+	

@@ -1,0 +1,50 @@
+----------------> Scene Transitions <---------------
+
+Description:
+	- A package that helps make awesome and smooth transitions between scenes.
+
+Folder Content:
+	- Animation -> Animations used in pre-made transition effects.
+	- Prefabs -> All prefabs and pre-made transition models of the package.
+	- Scripts -> Really the scripts used in the package.
+
+When to use:
+	- Use when you want transition between two scenes smoothly.
+
+How to use:
+
+	- Each scene in your game need a "TransitionEffect" model. You can found one in "Prefabs/TransitionModels".
+		- Choose a effect model and put in your scenes or create your own custom model.
+		- Then configure each transition individually in all your scenes by changing "SceneLoader" parameters in "TransitionEffect" gameObject.
+
+	- First level (normally "MainMenu") need a "TransitionManager" prefab. It's a undestructable manager that manage important parameters.
+
+	- You can also load a scene via script, using 'SceneLoader.Instance.(SomeLoadFunction)'.
+	
+	* Creating custom "TransitionEffect" models *
+		- Make two animations
+			-> Start level (load when level starts)
+			-> Exit level (load when level exits)
+
+		- Create a "Animator-Override_Controller"
+		- Set parent controller parameter as "DefaultSceneTransition" controller.
+		- Link the animations you made.
+		- Link the controller to your gameObject and configure the animations.
+		- Make a prefab of your gameObject to create a model (prefab must contain a canvas). 
+		- Look at the default TransitionModels in "Prefabs/TransitionModels" to see an example.
+
+Script Reference:
+	ENUMS:
+		LoadType -> The type of load of some transition. { Transition -> Transition between different scenes, Reload -> Load the same scene }
+		[Where to use -> Use to store if a transition is between scenes or reloading the scene.]
+
+		Transition -> The type of a transition, animated or not.  {Animated, NotAnimated }
+		[Where to use -> Use to store if a transition is animated or not]
+
+	MONO:
+		SceneLoader -> Load scenes and trigger transitions effects when it exists.
+		[Where to use -> Each scene need a instance of it. You can found one in "Prefabs/TransitionModels"]
+
+		TransitionManager -> Store LoadType and TransitionType of all transitions. SceneLoader uses this parameters.
+		[Where to use -> You should have only one instance of it, and should be in the first scene of the game as a undestructable manager.]
+		[You can find a prefab of it in "Prefabs/TransitionManager".]

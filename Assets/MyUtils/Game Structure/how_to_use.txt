@@ -1,0 +1,11 @@
+----------------> Game Structure <---------------
+
+Description: A master package that contains almost (or all) game structure you need to build a game.
+
+Packages Included:
+	
+	- UI_Structure: Contains almost (or all) UI structure needed for a game. [Docs Included]
+
+	- Panel_Transitions: Contain pre-made panel transitions and mould to do your custom transitions. [Docs Included]
+
+	- Scene_Transitions: A package that helps make awesome and smooth transitions between scenes. [Docs Included]

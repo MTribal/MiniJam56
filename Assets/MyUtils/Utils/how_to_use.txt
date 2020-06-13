@@ -1,0 +1,128 @@
+----------------> Game Structure <---------------
+
+Description: A package with many utils to use.
+
+
+Folders Content:
+	CustomEditors -> All editors scripts.
+
+	Enums -> All enumeration scripts.
+
+	Mono -> All MonoBehaviour scripts.
+
+	NotMono -> All other scripts.
+
+
+When to use:
+	Each util has it own use.
+
+
+Script Refernce:
+	CUSTOM_EDITORS:
+		All custom editor scripts work to make the editor experience better.
+
+	ENUMS:
+		RendererType -> A enum that represents the type that will be renderer.
+		[Where to use -> Use when you need specify a type of renderer.]
+
+		StartMode -> Represent the start mode of an action.
+		[Where to use -> Use when you want to specify the start mode of some action.]
+
+	MONO:
+		AdvancedTrigger -> A way of trigger something by inspector, withou touch code.
+		[Where to use: Use when you want trigger an action by inspector]
+
+			How to use:
+				- Attach this component to a gameObject.
+
+				- If TriggerType is TriggerCollider, the advanced trigger will be activated when the TriggerCollider of this object be activated.
+					(PS: For this option, your gameObject need a TriggerCollider)
+					Use filterByLayer and filterByTag to filter the colliders accepted.
+
+				- If TriggerType is Function, the advanced trigger will be activated when something activate this trigger.
+					(PS: To activate the trigger in this option, just call Trigger() function of AdvancedTrigger)
+
+				- WhenTriggered is the functions that will be called when the AdvancedTrigger be triggered.
+
+
+		CameraController -> An easy way of make the camera follow some object.
+		[Where to use -> Use when you want the camera following something, like player.]
+
+			How to use:
+				- Create a parent gameObject to camera, like "CameraHandle".
+				- Attach CameraController script to camera parent (CameraHandle).
+				- Choose an object and a mode to follow.
+				- You script it's already working. You can change other parameters to polish your camera as you want.
+
+
+		ColorFade -> An easy way of make cool fade and vibrant color effects.
+		[Where to use -> Use when you want make color effects.]
+
+			How to use:
+				- Attach ColorFade script to a gameObject.
+				- Choose a valid RendererType
+				- Start to use and change parameters.
+
+
+		ColorGroup -> An easy way of changing all childs (and recursive childs) color component at once.
+		[Where to use -> Use when you want change all childs color component of a gameObject.]
+
+			How to use:
+				- Attach ColorGroup to a parent gameObject.
+				- Choose RendererType accepted. (Can't be ColorGroup)
+				- Click in RestartRenderes when make a change.
+				- Use remote sprites to change SpriteRenderer component that ins't child of your gameObject.
+
+
+		DebugTools -> Useful tools to debug a game.
+		[where to use -> Use when you need to debug something specific in your game.]
+
+			How to use:
+				- Attach DebugTools script to an empty gameObject.
+				- Choose the keys you want to activate the functions.
+				- Choose the values.
+				- Mark activated when you want to use it.
+
+
+		IsVisbleGroup -> An easy way of make all renderers (recursively) inside a gameObject disabled or enabled.
+		[Where to use -> Use when you want to disable or enable all renderers (recursively) inside a gameObject.]
+
+			How to use:
+				- Just attach IsVisibleGroup to a parent gameObject, change IsVisible parameter and see the magic.
+
+
+		TimeEditor -> A script that make possible use corroutines in editor.
+		[Where to use: Use when you want to use Time.deltaTime in editor.]
+
+			How to use:
+				- Instead of typing "Time.deltaTime", type "TimeEditor.deltaTime"; "TimeEditor.time"; etc.
+
+
+	NOT_MONO:
+		Extensions -> Useful extensions to use in your project.
+	
+		GenericRenderer -> A easy way to treat many types of renderers at once.
+		[where to use -> Use when you have many types of renderer and want treat all at once.]
+
+			How to use:
+				- Instantiate a new GenericRenderer passing possible components of a gameObject.
+				  Ex: "new GenericRenderer(GetComponent<SpriteRenderer>(), GetComponent<ColorGroup>(), GetComponent<Tilemap>(), GetComponent<Image>())".
+				- Or use MyMonobehaviourUtils.GetAllRenderers.
+				  Ex: "List<GenericRenderer> x = MyMonobehaviourUtils.GetAllRenderers(myTransform)".
+
+				- Then, your generic renderer is ready to use.
+
+		MyMath -> Useful math functions to use in your project.
+
+		MyMonobeahviourUtils -> Useful MonoBehaviour utils to use in your project.
+
+		MyRandom -> A proper and easy way to get random numbers.
+
+		MyTween -> A easy way to tween values.
+		[Where to use -> Use when you want to twee values, vectors or colors.]
+
+			How to use:
+				- Just call MyTween.Tween() and pass the parameters.
+				  Ex: "MyTween.Tween(startValue, endValue, percentValue, easeType)".
+				- Don't forget to make the coroutine kkk. 
+		

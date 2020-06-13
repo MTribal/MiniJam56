@@ -1,0 +1,37 @@
+----------------> Panel Transitions <---------------
+
+Description:
+	- A package that help create panel transitions quickly and funcional.
+
+Folders Content
+	- DefaultAnimation -> The default animations and Animator-Controller that serve as mould to create custom animations.
+	- Prefabs -> All prefabs of the package
+	- PreMadeAnimations -> Pre-made animations to use in your project.
+
+When to use: 
+	- When working with open-close panels
+
+How to use: 
+
+	1- Creating a custom animation 
+		- Create a Animator-Override-Controller.
+		- Set the parent controller as the default controller of this package [path="DefaultAnimation/DefaultPanelController"].
+		- Create your own animations to each state shown in the Animator-Controller and link them to the controller.
+		- Your Animator-Controller is ready to use!
+
+
+	2- Using pre-made animations
+
+		[PS: Use the a clone of "DefaultMenu" prefab (path="Prefabs/DefaultMenu") or use the same parent structure in your panel or
+			     make necessary adjusts in your animations.]
+
+		- Choose a pre-made animation in "PreMadeAnimations" folder.
+		- Clone the chosen animations to your project
+		- Create a Animator-Override-Controller and link the copied animations to it.
+		- In your panel Animator, set "Controller" parameter as the Animator-Override-Controller created.
+		- Open animation window and adjust animation if necessary.
+
+
+	Using in RunTime:
+		- SetTrigger("open") to open the panel.
+		- SetTrigger("close") to close the panel.

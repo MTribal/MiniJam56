@@ -1,0 +1,11 @@
+----------------> UI Structure <---------------
+
+Description: A folder that contains almost (or all) UI structure needed for a game.
+
+Sub-Packages included:
+	
+	- ShopMenu
+	- etc
+
+
+How to use: Each sub-package has it own documentation.

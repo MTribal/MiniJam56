@@ -1,0 +1,3 @@
+Swipe Detector
+
+Hot to use -> Just put SwipeDectector in a gameObject (permanent or destroyable) and add a 'void (SwipeData)' method to OnSwipe static event that will be called when swipe is detected.

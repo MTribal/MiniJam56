@@ -1,0 +1,48 @@
+----------------> Shop <---------------
+
+Folders Content:
+	Animation -> All animations and animator_controllers used in the shop.
+
+	Prefabs -> All prefabs used in the shop, like default models, showcases and the [ShopMenu prefab].
+
+	Scripts -> Really the scripts used in the shop.
+
+	ShopItens -> The default ShopItem assets in the shop, normally used only for tests.
+
+
+Script Reference:
+	ENUMS:
+
+		ItemStatus -> Enumeration of the status of a item (OnSale, Bought or Selected).
+		[Where to use -> Use to control the atual status of a item.]
+
+	MONO:
+	
+		ItensGridManager -> Instantiate all itens of a section, based in a ShopItem array.
+		[Where to use -> Each showcase section (ScrollView gameObject) needs this.]
+
+		ResourceField -> Atualize the value of the resource text based on saved data.
+		[Where to use -> Each resource field needs this.]
+
+		ShopItemPrefab -> Contain information and functions used in a model of item. All itens will be instantiated based on a model with this script.
+		[Where to use -> Each item model prefab needs this. To instantiate a model, pass the model prefab as a parameter to ItensGridManager script.]
+
+		ShopManager -> The master manager of the shop. Manage all ShopItem assets and load saved data of the shop.
+		[Where to use -> Should have only one instance in the whole game and starts in the first scene. This is a undestructable manager.]
+		[ShopItem array should have all ShopItem asses in the project, without repeating.]
+
+		ShowcaseAtualizer -> Atualize all showcase sections in the shop by three ways: 1 - In the start of scene; 2 - When shop active sections is changed; 3 - By trigger.
+		[Where to use -> Should be in ShopMenu gameobject and have the reference of all 'ItensGridManager's in the scene.]
+
+		StoreSectionToogle -> Contain a function to change active section in the shop. 
+		[Where to use -> Each section toogle needs this]
+
+	NOT_MONO:
+
+		ShopData -> The serializable class that contains all data shop of the game. Is not a MonoBehaviour class.
+		[Where to use -> Use to store all data shop. When instantiate a new ShopData, the script will automatically collect the data from ShopManager.]
+		[Remember: Only serialize one data class in the project. Use ShopData class as a parameter for a mater data class.]
+
+		ShopItem -> A scriptable object that is the base script for all ShopItem assets. 
+		[You should not have equal ShopItem assets or use one in two different places.]
+		[To create one: right click -> create -> ShopItem]
