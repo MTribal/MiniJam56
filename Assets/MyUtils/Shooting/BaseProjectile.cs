@@ -25,10 +25,17 @@ namespace My_Utils.Shooting
         public override void OnSpawnFromPool()
         {
             base.OnSpawnFromPool();
+            shutingDown = false;
             Invoke("DestroyItSelf", duration);
         }
 
         protected virtual void FixedUpdate()
+        {
+            if (!shutingDown)
+                Move();
+        }
+
+        protected virtual void Move()
         {
             transform.Translate(Vector2.right * speed * Time.fixedDeltaTime, Space.Self);
         }

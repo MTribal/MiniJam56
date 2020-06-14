@@ -2,8 +2,8 @@
 
 public class GenerateCards : MonoBehaviour
 {
-    [SerializeField] private GameObject _cardPrefab;
-    [SerializeField] private CardData[] _cards;
+    [SerializeField] private GameObject _cardPrefab = default;
+    [SerializeField] private CardData[] _cards = default;
 
     private void Start()
     {

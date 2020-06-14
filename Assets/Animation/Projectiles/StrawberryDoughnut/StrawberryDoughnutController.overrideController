@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: StrawberryDoughnutController
+  m_Controller: {fileID: 9100000, guid: bf51ce861d038244186306e0e8e1acbb, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: e018bc8641145a14791739bdc84d6256, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ac049c0eb4ae01848bd8eda8cac694f3, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 93e64d9b6e6332044b5f8cf0297f37fa, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: cfe28bc70b64ea94682da2271cca4ea6, type: 2}

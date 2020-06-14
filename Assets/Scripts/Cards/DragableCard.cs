@@ -1,14 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CanvasGroup))]
 public class DragableCard : BaseCard, IPointerDownHandler, IPointerUpHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [SerializeField] protected GameObject _grayFilter;
+    [SerializeField] private Image _cooldownFilter = default;
     [SerializeField] private SpriteRenderer _previewDoughnutPref = default;
 
-    private CardStates _cardState;
+    private bool _isRecharging;
     private Canvas _canvas;
     private CanvasGroup _canvasGroup;
     private RectTransform _rectTransform;
@@ -26,25 +29,45 @@ public class DragableCard : BaseCard, IPointerDownHandler, IPointerUpHandler, IB
         _canvas = GameObject.FindGameObjectWithTag("PlayCanvas").GetComponent<Canvas>();
         _canvasGroup = GetComponent<CanvasGroup>();
         _initialAnchorPosition = _rectTransform.anchoredPosition;
+
+        StartCoroutine(Recharge());
     }
-    
+
     private void OnEnable() => GameManager.OnMoneyAmountChanged += AtualizeState;
 
     private void OnDisable() => GameManager.OnMoneyAmountChanged -= AtualizeState;
 
     public void AtualizeState(int moneyAmount)
     {
-        if (moneyAmount >= _cardData.cost)
+        if (moneyAmount >= _cardData.cost && !_isRecharging)
         {
-            _cardState = CardStates.Buyable;
             _grayFilter.SetActive(false);
         }
         else
         {
-            _cardState = CardStates.NotBuyable;
             _grayFilter.SetActive(true);
         }
+    }
 
+    private IEnumerator Recharge()
+    {
+        _isRecharging = true;
+
+        float cooldownDuration = _cardData.cooldown > 0 ? _cardData.cooldown : 0.001f;
+
+        float fill = 1f;
+        _cooldownFilter.fillAmount = 1f;
+        while (fill > 0)
+        {
+            float fillDelta = Time.deltaTime / cooldownDuration;
+
+            fill -= fillDelta;
+            _cooldownFilter.fillAmount -= fillDelta;
+            yield return new WaitForSeconds(fillDelta);
+        }
+
+        _isRecharging = false;
+        AtualizeState(GameManager.Instance.MoneyAmount);
     }
 
     #region Events
@@ -98,6 +121,7 @@ public class DragableCard : BaseCard, IPointerDownHandler, IPointerUpHandler, IB
     {
         Instantiate(_cardData.doughnut, position, Quaternion.identity);
         ResetPosition();
+        StartCoroutine(Recharge());
         GameManager.Instance.Withdraw(_cardData.cost);
     }
 

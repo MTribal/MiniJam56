@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: StuffedCookieController
+  m_Controller: {fileID: 9100000, guid: c4c25b8aa14f2654bbbc39417513e503, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: c92e1329d5ee30a428f780d54f81dab3, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 32b2746843f0399488fb52257be17558, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: f7fd38732a44c31458de80bb3922dc5d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 642c010bcfbd02a48800a667996b3400, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: cdf5f7f829274284089213d0ab951cd5, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: afb3198bf17464b4a8568fc298a12741, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: c16a378f0c78c594abbe9fbcab0c480d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c2a3aafe691c58948a05700ed2969a73, type: 2}

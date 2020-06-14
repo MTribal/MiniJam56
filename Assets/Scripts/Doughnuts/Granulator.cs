@@ -3,9 +3,9 @@
 public class Granulator : Doughnut
 {
     [Tooltip("Amount of granulate producted by each burst.")]
-    [SerializeField] private int _granulateProducted;
+    [SerializeField] private int _granulateProducted = default;
 
-    [SerializeField] private ParticleSystem _granulateBurst;
+    [SerializeField] private ParticleSystem _granulateBurst = default;
 
     public override bool ShouldWork()
     {

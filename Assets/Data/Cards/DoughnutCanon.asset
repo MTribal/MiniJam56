@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2688b2d51ed2204e9941dae6376078f, type: 3}
+  m_Name: DoughnutCanon
+  m_EditorClassIdentifier: 
+  cost: 200
+  cooldown: 10
+  background: {fileID: 21300000, guid: cd721fd3b0d29cf4aa12c50f31351763, type: 3}
+  image: {fileID: 21300000, guid: 293b280d2a1a01f469c4ed7886f10451, type: 3}
+  sprite: {fileID: -4224884786309246549, guid: 13e4160a508bdaf4f822ebc05492f099, type: 3}
+  doughnut: {fileID: 1017515445321437597, guid: 7c730acf8d81aee4b9181ab491c35e3e,
+    type: 3}

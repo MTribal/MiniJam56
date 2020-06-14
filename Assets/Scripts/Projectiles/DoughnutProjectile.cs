@@ -8,6 +8,7 @@ public class DoughnutProjectile : BaseProjectile
     {
         if (collision.TryGetComponent(out IDamageable damageable)) damageable.TakeDamage(damage);
 
-        DestroyItSelf();
+        GetComponent<Animator>().SetTrigger("Destroy");
+        shutingDown = true;
     }
 }

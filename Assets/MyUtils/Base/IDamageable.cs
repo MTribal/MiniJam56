@@ -2,10 +2,8 @@
 {
     public interface IDamageable
     {
-        int Life { get; }
+        float Life { get; }
 
-        void TakeDamage(int damageAmount);
-
-        void DestroyItSelf();
+        void TakeDamage(float damageAmount);
     }
 }

@@ -2,8 +2,12 @@
 using System.Collections;
 using UnityEngine;
 
-public abstract class Doughnut : StateMachine
+public abstract class Doughnut : StateMachine, IDamageable
 {
+    [Tooltip("The max life. Also start life.")]
+    [SerializeField] private float _maxLife = default;
+
+    [Tooltip("Should be longer than the work animation.")]
     [SerializeField] private float _workCooldown = default;
     public float WorkCooldown { get => _workCooldown; }
 
@@ -14,15 +18,29 @@ public abstract class Doughnut : StateMachine
 
     public Animator Animator { get; private set; }
 
-    private void Awake()
+    public float Life { get; private set; }
+
+    public void TakeDamage(float damageAmount)
     {
-        Animator = GetComponent<Animator>();
+        Life -= damageAmount;
+        if (Life <= 0) DestroyItSelf();
     }
 
-    private void Start()
+    private void DestroyItSelf()
+    {
+        Destroy(gameObject);
+    }
+
+    protected virtual void Awake()
+    {
+        Animator = GetComponent<Animator>();
+        Life = _maxLife;
+    }
+
+    protected override void Start()
     {
         ResetCanWork();
-        InitializeMachine();
+        base.Start();
     }
 
     public override void InitializeMachine()
@@ -34,6 +52,7 @@ public abstract class Doughnut : StateMachine
 
     public void ResetCanWork()
     {
+        StopCoroutine("ResetinCanAttack");
         StartCoroutine(ResetinCanAttack());
     }
 
@@ -56,7 +75,7 @@ public abstract class Doughnut : StateMachine
     /// </summary>
     public void OnWorkFinished()
     {
-        if (!CanWork)
-            atualState.Exit(); // AtualState == work state
+        if (_workCooldown != 0 || !ShouldWork())
+            atualState.Exit();  // Exit work state
     }
 }

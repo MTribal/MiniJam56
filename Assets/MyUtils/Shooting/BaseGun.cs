@@ -28,7 +28,7 @@ namespace My_Utils.Shooting
         private bool _canShoot = true;
         private ObjectPooler _objectPooler;
 
-        private void Start()
+        protected virtual void Start()
         {
             _objectPooler = ObjectPooler.Instance;
 
@@ -48,15 +48,16 @@ namespace My_Utils.Shooting
             return (int)(projectilePrefab.duration / divisor) + 1;
         }
 
-        public void Shoot(float gunAngle)
+        public virtual BaseProjectile Shoot(float gunAngle)
         {
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, gunAngle);
             if (_canShoot)
             {
                 _canShoot = false;
                 StartCoroutine(EnableShoot());
-                _objectPooler.SpawnFromPool(poolTag, shootPos.position, transform.rotation, false);
+                return _objectPooler.SpawnFromPool<BaseProjectile>(poolTag, shootPos.position, transform.rotation, false);
             }
+            return null;
         }
 
         private IEnumerator EnableShoot()
