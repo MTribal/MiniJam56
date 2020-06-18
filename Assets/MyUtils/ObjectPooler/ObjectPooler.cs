@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace My_Utils
 {
-    public class ObjectPooler : SingletonScene<ObjectPooler>
+    public class ObjectPooler : MonoBehaviour
     {
         [System.Serializable]
         public class Pool
@@ -19,6 +19,15 @@ namespace My_Utils
 
         private readonly Dictionary<string, Queue<PooledObject>> _dictPool = new Dictionary<string, Queue<PooledObject>>();
 
+        public static ObjectPooler Instance { get; private set; }
+
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+        }
 
         private void Start()
         {

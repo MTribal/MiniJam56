@@ -26,8 +26,9 @@ public abstract class Doughnut : StateMachine, IDamageable
         if (Life <= 0) DestroyItSelf();
     }
 
-    private void DestroyItSelf()
+    public void DestroyItSelf()
     {
+        TileSlotManager.Instance.GetTileSlot(transform.position).Disoccupe();
         Destroy(gameObject);
     }
 

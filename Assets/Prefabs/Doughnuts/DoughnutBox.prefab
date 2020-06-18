@@ -98,7 +98,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 567116667
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 2520523455630796663, guid: e7466e0b2347fd44b9d80e4c59055ca0,
     type: 3}
@@ -141,7 +141,7 @@ Transform:
   m_GameObject: {fileID: 5484267953454485817}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.09, y: -0.65, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1.8, y: 1.8, z: 1.8}
   m_Children:
   - {fileID: 5484267953444793936}
   - {fileID: 556927062}
@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxLife: 6
-  _workCooldown: 3
+  _workCooldown: 2.35
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -186,7 +186,7 @@ MonoBehaviour:
   automaticSize: 1
   poolSize: 0
   shootPos: {fileID: 556927062}
-  timeBetweenShots: 3
+  timeBetweenShots: 2
 --- !u!95 &1818760014
 Animator:
   serializedVersion: 3

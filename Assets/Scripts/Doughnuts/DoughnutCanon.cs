@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using My_Utils.Audio;
+using UnityEngine;
 
 [RequireComponent(typeof(CanonGun))]
 public class DoughnutCanon : Doughnut
@@ -8,12 +9,12 @@ public class DoughnutCanon : Doughnut
 
     private CanonGun _canonGun;
 
-    protected override void Awake()                     
-    {   
+    protected override void Awake()
+    {
         base.Awake();
-        _canonGun = GetComponent<CanonGun>();    
-    }       
-                                
+        _canonGun = GetComponent<CanonGun>();
+    }
+
     public override bool ShouldWork()
     {
         return Physics2D.Linecast(transform.position, FirstSquarePos, enemyLayer).collider != null;
@@ -21,13 +22,25 @@ public class DoughnutCanon : Doughnut
 
     public override void Work()
     {
-        _canonGun.SetNextTarget(GetTarget());
-        _canonGun.Shoot(0);
+        if (GetTarget(out Vector2 target))
+        {
+            AudioManager.Instance.PlaySound("DoughnutCanonFire");
+            _canonGun.SetNextTarget(target);
+            _canonGun.Shoot(0);
+        }
     }
 
-    private Vector2 GetTarget()
+    private bool GetTarget(out Vector2 target)
     {
-        return Physics2D.Linecast(transform.position, FirstSquarePos, enemyLayer).collider.transform.position;
+        Collider2D collider2D = Physics2D.Linecast(transform.position, FirstSquarePos, enemyLayer).collider;
+        if (collider2D != null)
+        {
+            target = collider2D.transform.position;
+            return true;
+        }
+
+        target = new Vector2();
+        return false;
     }
 
     private void OnDrawGizmos()

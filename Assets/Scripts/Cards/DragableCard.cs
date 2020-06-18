@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using My_Utils.Audio;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -119,6 +120,7 @@ public class DragableCard : BaseCard, IPointerDownHandler, IPointerUpHandler, IB
 
     public void PutDoughnut(Vector2 position)
     {
+        AudioManager.Instance.PlaySound("DropCard");
         Instantiate(_cardData.doughnut, position, Quaternion.identity);
         ResetPosition();
         StartCoroutine(Recharge());

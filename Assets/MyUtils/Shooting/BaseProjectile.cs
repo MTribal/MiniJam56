@@ -12,7 +12,7 @@ namespace My_Utils.Shooting
         [Tooltip("The speed of the projectile.")]
         public float speed;
         [Tooltip("The amount of damage that this projectile causes.")]
-        public int damage;
+        public float damage;
 
         [Tooltip("Layers that the projectile wants to hit, like enemies or player.")]
         public LayerMask targetLayers;

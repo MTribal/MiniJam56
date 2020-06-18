@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Granulator
   m_EditorClassIdentifier: 
   cost: 50
-  cooldown: 3
+  cooldown: 5
   background: {fileID: 21300000, guid: cd721fd3b0d29cf4aa12c50f31351763, type: 3}
   image: {fileID: 21300000, guid: 2b10fb9c26f82714db85e1406455089d, type: 3}
   sprite: {fileID: -8331790387987448772, guid: 23f64886db14565499f4b5983c576d55, type: 3}

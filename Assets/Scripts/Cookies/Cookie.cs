@@ -1,10 +1,12 @@
 ﻿using My_Utils;
+using My_Utils.Audio;
 using UnityEngine;
 
 public abstract class Cookie : StateMachine, IDamageable
 {
-    protected Vector2 MoveDirection { get; } = Vector2.left;
+    public Vector2 MoveDirection { get; } = Vector2.left;
 
+    [SerializeField] private int _wheight = default;
     [SerializeField] private float _maxLife = default;
     [SerializeField] protected float moveSpeed = default;
     [SerializeField] protected int damage;
@@ -17,21 +19,34 @@ public abstract class Cookie : StateMachine, IDamageable
     [SerializeField] private Vector2 _attackRange = default;
     [SerializeField] private Transform _attackPos = default;
 
+    public int Wheight { get => _wheight; }
+    public float MoveSpeed { get => moveSpeed; }
     public Animator Animator { get; private set; }
-
     public float Life { get; set; }
+
+    private bool _isCracked;
 
     public void TakeDamage(float damageAmount)
     {
         Life -= damageAmount;
 
         if (Life <= 0) DestroyItSelf();
-        else if (Life <= _maxLife / 2) Animator.SetTrigger("Crack");
+        else if (Life <= _maxLife / 2)
+        {
+            if (!_isCracked)
+            {
+                _isCracked = true;
+                AudioManager.Instance.PlaySound("CookieCrack");
+            }
+
+            Animator.SetTrigger("Crack");
+        }
     }
 
-    private void DestroyItSelf()
+    protected virtual void DestroyItSelf()
     {
-        ObjectPooler.Instance.PutToPool(GetComponent<CookiePooledObject>());
+        GameManager.Instance.AddScore(_wheight);
+        Destroy(gameObject);
     }
 
     protected virtual void Awake()
@@ -42,7 +57,7 @@ public abstract class Cookie : StateMachine, IDamageable
 
     public override void InitializeMachine()
     {
-        SetState(new CookieStateIdle(this));
+        SetState(new CookieStateWalk(this));
     }
 
     public bool ShouldAttack()
@@ -53,8 +68,10 @@ public abstract class Cookie : StateMachine, IDamageable
     /// <summary>
     /// Called by attack animation.
     /// </summary>
-    public void Attack()
+    public virtual void Attack()
     {
+        if (!GameManager.Instance.IsPlaying) return;
+
         Collider2D[] doughnuts = Physics2D.OverlapBoxAll(_attackPos.position, _attackRange, 0, _doughnutLayer);
         for (int i = 0; i < doughnuts.Length; i++)
         {

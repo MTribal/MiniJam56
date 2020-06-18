@@ -28,9 +28,7 @@ namespace My_Utils
 
         private void Awake()
         {
-            Instance = this;
-
-            if (TransitionManager.Instance != null)
+            if (Instance != null)
             {
                 // Animate if LastTransitionType == true
                 transitionAnimator.speed = TransitionManager.Instance.LastAnimationRate;
@@ -42,6 +40,7 @@ namespace My_Utils
                 transitionAnimator.speed = transitionSettings.animationRate;
                 transitionAnimator.SetBool("start_scene", animateFirstTransition);
             }
+            Instance = this;
         }
 
         #region ReloadScene

@@ -10,6 +10,6 @@ public class CookieStateAttack : CookieState
     {
         base.Exit();
         stateMachine.Animator.SetBool("IsAttacking", false);
-        stateMachine.SetState(new CookieStateIdle(stateMachine));
+        stateMachine.SetState(new CookieStateWalk(stateMachine));
     }
 }

@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class CanonGun : BaseGun
 {
-    public AnimationCurve _yPosCurve = default;
     private Vector2 _nextTarget;
 
 
@@ -18,7 +17,7 @@ public class CanonGun : BaseGun
     public override BaseProjectile Shoot(float gunAngle)
     {
         CanonProjectile canonProjectile = (CanonProjectile) base.Shoot(gunAngle);
-        canonProjectile.StartMove(_nextTarget, _yPosCurve);
+        canonProjectile.StartMove(_nextTarget);
 
         return canonProjectile;
     }

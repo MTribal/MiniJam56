@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DoughnutSaw
   m_EditorClassIdentifier: 
   cost: 200
-  cooldown: 4
+  cooldown: 8
   background: {fileID: 21300000, guid: cd721fd3b0d29cf4aa12c50f31351763, type: 3}
   image: {fileID: 21300000, guid: 63e460adeca616c4b8abea3da5d46c82, type: 3}
   sprite: {fileID: 6703097905516204079, guid: 5c61a593000d3604bb8b0ef2c9d1da9c, type: 3}

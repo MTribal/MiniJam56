@@ -16,7 +16,7 @@ TagManager:
   - 
   - Enemy
   - Doughnut
-  - 
+  - TileSlot
   - 
   - 
   - 
@@ -45,15 +45,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Doughnuts
+    uniqueID: 567116667
+    locked: 0
   - name: Cookies
     uniqueID: 1587720079
     locked: 0
-  - name: Doughnuts
-    uniqueID: 567116667
+  - name: UI
+    uniqueID: 571864205
     locked: 0
   - name: Projectiles
     uniqueID: 2872182617
     locked: 0
-  - name: UI
-    uniqueID: 571864205
+  - name: MasterUI
+    uniqueID: 2779911877
     locked: 0

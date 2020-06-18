@@ -98,7 +98,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 567116667
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 6703097905516204079, guid: 5c61a593000d3604bb8b0ef2c9d1da9c,
     type: 3}
@@ -140,7 +140,7 @@ Transform:
   m_GameObject: {fileID: 2858600134470190403}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.13, y: -0.51, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children:
   - {fileID: 2858600133464002984}
   - {fileID: 1163188527}
@@ -159,14 +159,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a0477a575c55af458a0734a4cdec17c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxLife: 12
+  _maxLife: 20
   _workCooldown: 0
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
-  damage: 0.3
-  _editAttackRange: 0
-  _attackRange: {x: 2.2, y: 1.5}
+  damage: 0.15
+  _editAttackRange: 1
+  _attackRange: {x: 2.15, y: 1.22}
   _attackPos: {fileID: 1163188527}
 --- !u!95 &2858600134470190400
 Animator:

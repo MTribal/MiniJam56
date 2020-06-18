@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2688b2d51ed2204e9941dae6376078f, type: 3}
   m_Name: DoughnutCanon
   m_EditorClassIdentifier: 
-  cost: 200
-  cooldown: 10
+  cost: 450
+  cooldown: 12
   background: {fileID: 21300000, guid: cd721fd3b0d29cf4aa12c50f31351763, type: 3}
   image: {fileID: 21300000, guid: 293b280d2a1a01f469c4ed7886f10451, type: 3}
   sprite: {fileID: -4224884786309246549, guid: 13e4160a508bdaf4f822ebc05492f099, type: 3}

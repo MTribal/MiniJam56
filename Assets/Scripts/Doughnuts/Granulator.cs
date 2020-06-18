@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using My_Utils.Audio;
+using UnityEngine;
 
 public class Granulator : Doughnut
 {
@@ -14,6 +15,7 @@ public class Granulator : Doughnut
 
     public override void Work()
     {
+        AudioManager.Instance.PlaySound("GranulatorWork");
         _granulateBurst.Play();
         GameManager.Instance.Deposit(_granulateProducted);
     }

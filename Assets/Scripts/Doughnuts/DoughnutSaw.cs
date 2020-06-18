@@ -1,4 +1,5 @@
 ﻿using My_Utils;
+using My_Utils.Audio;
 using UnityEngine;
 
 public class DoughnutSaw : Doughnut
@@ -28,6 +29,15 @@ public class DoughnutSaw : Doughnut
                 damageable.TakeDamage(damage);
             }
         }
+    }
+
+
+    /// <summary>
+    /// Called by work animation.
+    /// </summary>
+    public void StartAttackSound()
+    {
+        AudioManager.Instance.PlaySound("DoughnutSawAttack");
     }
 
     private void OnDrawGizmos()

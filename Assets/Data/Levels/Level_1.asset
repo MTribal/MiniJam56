@@ -15,6 +15,10 @@ MonoBehaviour:
   duration: 20
   spawnFields:
   - poolTag: Enemy_1
-    qttOfInstances: 10
+    qttOfInstances: 0
     cookiePrefab: {fileID: 8278471861648179321, guid: 09d780685b38b014781b769fde4f537f,
+      type: 3}
+  - poolTag: Enemy_2
+    qttOfInstances: 10
+    cookiePrefab: {fileID: 1438058344008693160, guid: 2dacd18969e95bb46a6d0f37ea15c596,
       type: 3}

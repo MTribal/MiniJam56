@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class DoughnutWorkState : DoughnutState
+﻿public class DoughnutWorkState : DoughnutState
 {
     public DoughnutWorkState(Doughnut stateMachine) : base(stateMachine)
     {

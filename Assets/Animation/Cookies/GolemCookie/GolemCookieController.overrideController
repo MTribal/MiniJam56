@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GolemCookieController
+  m_Controller: {fileID: 9100000, guid: c4c25b8aa14f2654bbbc39417513e503, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: c92e1329d5ee30a428f780d54f81dab3, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ae5082616619cf64e9517f5ba6a9250a, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: cdf5f7f829274284089213d0ab951cd5, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c3654ec04d3e3a54a97096a0c24cc32f, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: f7fd38732a44c31458de80bb3922dc5d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 409faa574468ef0419ffe36b4e3f6ece, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: c16a378f0c78c594abbe9fbcab0c480d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a8006f4c5c465d94391016effedca5e5, type: 2}

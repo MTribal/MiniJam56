@@ -1,54 +1,62 @@
 ﻿using My_Utils;
+using My_Utils.Audio;
 using My_Utils.Shooting;
-using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class CanonProjectile : BaseProjectile
 {
-    [SerializeField] private float _upForce = 1f;
-    
-    private AnimationCurve _yPosCurve;
+    [SerializeField] private float _paraboleStartAngle = default;
+    [SerializeField] private float _distToTargetToExplode = 0.05f;
 
-    private Vector2 _startPos;
+    private Rigidbody2D _rb;
     private Vector2 _targetPos;
-    private bool _reachedTarget;
+    private bool _causedDamage;
 
-    public void StartMove(Vector2 targetpos, AnimationCurve yPosCurve)
+    private void Awake()
     {
-        _startPos = transform.position;
+        _rb = GetComponent<Rigidbody2D>();
+    }
+
+    public override void OnSpawnFromPool()
+    {
+        base.OnSpawnFromPool();
+        _rb.isKinematic = false;
+        _causedDamage = false;
+    }
+
+    public void StartMove(Vector2 targetpos)
+    {
         _targetPos = targetpos;
-        _yPosCurve = yPosCurve;
-        StartCoroutine(Moving());
+
+        Vector2 force = MyUtils.CalculateParaboleForce(transform.position, _targetPos, _paraboleStartAngle, _rb.gravityScale);
+        _rb.AddForce(force, ForceMode2D.Impulse);
     }
 
     protected override void FixedUpdate()
     {
-        // Not call base.FixedUpdate()
+        if (!_causedDamage && transform.position.IsCloseTo(_targetPos, _distToTargetToExplode))
+        {
+            ReachedTarget();
+        }
     }
 
-    private IEnumerator Moving()
+    private void ReachedTarget()
     {
-        float duration = 10f / speed;
-        float jumpIntensity =  Mathf.Abs((_startPos - _targetPos).x) * duration * _upForce;
+        AudioManager.Instance.PlaySound("CanonBallExplode");
+        _rb.isKinematic = true;
+        GetComponent<Animator>().SetTrigger("Destroy");
 
-        float percent = 0;
-        while (percent <= 1f)
+        CircleCollider2D circleCollider2D = GetComponent<CircleCollider2D>();
+        Vector2 point = (Vector2)transform.position + circleCollider2D.offset;
+        float radius = circleCollider2D.radius;
+        Collider2D[] cookies = Physics2D.OverlapCircleAll(point, radius, targetLayers);
+
+        foreach (Collider2D cookie in cookies)
         {
-            percent += Time.deltaTime / duration;
-            Vector2 nextPos = MyLerp.Lerp(_startPos, _targetPos, percent, EaseType.Linear);
-            Vector2 yOffset = new Vector2(0, _yPosCurve.Evaluate(percent) * jumpIntensity);
-            transform.position = nextPos + yOffset;
-            yield return null;
+            if (cookie.TryGetComponent(out IDamageable damageable)) damageable.TakeDamage(damage);
         }
 
-        _reachedTarget = true;
-        GetComponent<Animator>().SetTrigger("Destroy");
-    }
-
-    protected override void OnTriggerWithTarget(Collider2D collision)
-    {
-        if (!_reachedTarget) return;
-
-        if (collision.TryGetComponent(out IDamageable damageable)) damageable.TakeDamage(damage);
+        _causedDamage = true;
     }
 }

@@ -8,6 +8,7 @@ public class AmountField : MonoBehaviour
     private void OnEnable()
     {
         GameManager.OnMoneyAmountChanged += Atualize;
+        Atualize(GameManager.Instance.MoneyAmount);
     }
     
     private void OnDisable()

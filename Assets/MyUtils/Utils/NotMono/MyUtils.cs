@@ -749,10 +749,35 @@ namespace My_Utils
             float ca_lenght = mainLineLenght.magnitude * ca_percentage;
             DrawArrow(fromPos, toPos, ca_lenght, angle, drawType);
         }
+
+
+        /// <summary>
+        /// Calculate the force needed to throw a object in a parabolic way to a target.
+        /// </summary>
+        /// <param name="source">The start pos.</param>
+        /// <param name="target">The target pos.</param
+        /// <param name="angle">The angle to throw.</param>
+        /// <returns></returns>
+        public static Vector2 CalculateParaboleForce(Vector2 source, Vector2 target, float angle, float gravityScale)
+        {
+            Vector2 direction = target - source;
+            float h = direction.y;
+            direction.y = 0;
+            float distance = direction.magnitude;
+            float a = angle * Mathf.Deg2Rad;
+            direction.y = distance * Mathf.Tan(a);
+            distance += h / Mathf.Tan(a);
+
+            // calculate velocity
+            float velocity = Mathf.Sqrt(distance * Physics.gravity.magnitude * gravityScale / Mathf.Sin(2 * a));
+            return velocity * direction.normalized;
+        }
     }
 
     /// <summary>
     /// Represents a drawing type. Gizmos should only be used in Gizmos functions and Handles in OnSceneGUI function.
     /// </summary>
     public enum DrawType { Gizmos, Handles };
+
+
 }

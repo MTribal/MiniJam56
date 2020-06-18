@@ -35,19 +35,57 @@ namespace My_Utils.Audio
 
 
         /// <summary>
-        /// Play a sound by a given name. Return false if sound not found.
+        /// Play a sound by a given name. 
         /// </summary>
-        public bool PlaySound(string soundName)
+        public void PlaySound(string soundName)
+        {
+            GetSound(soundName).source.Play();
+        }
+
+
+        /// <summary>
+        /// Stop a sound by a given name. 
+        /// </summary>
+        public void StopSound(string soundName)
+        {
+            GetSound(soundName).source.Stop();
+        }
+
+
+        /// <summary>
+        /// Pause a sound by a given name. 
+        /// </summary>
+        public void PauseSound(string soundName)
+        {
+            GetSound(soundName).source.Pause();
+        }
+
+
+        /// <summary>
+        /// Set a sound pitch by a given name. 
+        /// </summary>
+        public void SetPitch(string soundName, float value)
+        {
+            GetSound(soundName).source.pitch = value;
+        }
+
+
+        /// <summary>
+        /// Set a sound volume by a given name. 
+        /// </summary>
+        public void SetVolume(string soundName, float value)
+        {
+            GetSound(soundName).source.volume = value;
+        }
+
+
+        private Sound GetSound(string soundName)
         {
             Sound sound = Array.Find(sounds, s => s.name == soundName);
             if (sound == null)
-            {
                 Debug.Log("Sound" + sound.name + " not found.");
-                return false;
-            }
 
-            sound.source.Play();
-            return true;
+            return sound;
         }
     }
 }

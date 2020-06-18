@@ -7,7 +7,7 @@ public class CanonGunEditor : Editor
     public class GunEditor : Editor
     {
         private CanonGun _target;
-        private SerializedProperty projectilePrefabProp, uniqueTagProp, poolTagProp, automaticSizeProp, shootPosProp, timeBetweenShotsProp, poolSizeProp, yPosCurveProp;
+        private SerializedProperty projectilePrefabProp, uniqueTagProp, poolTagProp, automaticSizeProp, shootPosProp, timeBetweenShotsProp, poolSizeProp;
 
         private void OnEnable()
         {
@@ -20,7 +20,6 @@ public class CanonGunEditor : Editor
             shootPosProp = serializedObject.FindProperty("shootPos");
             timeBetweenShotsProp = serializedObject.FindProperty("timeBetweenShots");
             uniqueTagProp = serializedObject.FindProperty("_uniqueTag");
-            yPosCurveProp = serializedObject.FindProperty("_yPosCurve");
         }
 
         public override void OnInspectorGUI()
@@ -53,7 +52,6 @@ public class CanonGunEditor : Editor
             EditorGUILayout.PropertyField(timeBetweenShotsProp);
 
             EditorGUILayout.Separator();
-            EditorGUILayout.PropertyField(yPosCurveProp);
 
             serializedObject.ApplyModifiedProperties();
         }

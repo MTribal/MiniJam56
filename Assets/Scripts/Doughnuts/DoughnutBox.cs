@@ -1,4 +1,5 @@
-﻿using My_Utils.Shooting;
+﻿using My_Utils.Audio;
+using My_Utils.Shooting;
 using UnityEngine;
 
 public class DoughnutBox : Doughnut
@@ -16,6 +17,7 @@ public class DoughnutBox : Doughnut
 
     public override void Work()
     {
+        AudioManager.Instance.PlaySound("DoughnutBoxFire");
         _gun.Shoot(0);
     }
 
