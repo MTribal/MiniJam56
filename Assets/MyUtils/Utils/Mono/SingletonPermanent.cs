@@ -1,53 +1,37 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// Inherit from this base class to create a singleton.
-/// e.g. public class MyClassName : Singleton<MyClassName> {}
-/// </summary>
-public class SingletonPermanent<T> : MonoBehaviour where T : MonoBehaviour
+namespace My_Utils
 {
-    // Check to see if we're about to be destroyed.
-    private static bool _shuttingDown = false;
-    private static readonly object _lock = new object();
-    private static T _instance;
-
-    /// <summary>
-    /// Access singleton instance through this propriety.
-    /// </summary>
-    public static T Instance
+    public class SingletonPermanent<T> : MonoBehaviour where T : MonoBehaviour
     {
-        get
-        {
-            if (_shuttingDown)
-            {
-                Debug.LogWarning("[Singleton] Instance '" + typeof(T) + "' already destroyed. Returning null.");
-                return null;
-            }
+        private static T _instance;
 
-            lock (_lock)
+        protected virtual void Awake()
+        {
+            if (_instance != null) Destroy(gameObject);
+        }
+
+        public static T Instance
+        {
+            get
             {
                 if (_instance == null)
                 {
-                    // Search for existing instance.
-                    _instance = (T)FindObjectOfType(typeof(T));
-
+                    _instance = FindObjectOfType<T>();
+                    _instance.transform.parent = null;
                     DontDestroyOnLoad(_instance.gameObject);
                 }
 
                 return _instance;
             }
         }
-    }
 
-
-    private void OnApplicationQuit()
-    {
-        _shuttingDown = true;
-    }
-
-
-    private void OnDestroy()
-    {
-        _shuttingDown = true;
+        public static bool InstanceIsNull
+        {
+            get
+            {
+                return _instance == null;
+            }
+        }
     }
 }

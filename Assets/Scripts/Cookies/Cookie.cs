@@ -78,6 +78,7 @@ public abstract class Cookie : StateMachine, IDamageable
             if (doughnuts[i].TryGetComponent(out IDamageable damageable))
             {
                 damageable.TakeDamage(damage);
+                break;
             }
         }
 

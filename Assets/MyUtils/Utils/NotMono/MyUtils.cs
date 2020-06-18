@@ -772,6 +772,18 @@ namespace My_Utils
             float velocity = Mathf.Sqrt(distance * Physics.gravity.magnitude * gravityScale / Mathf.Sin(2 * a));
             return velocity * direction.normalized;
         }
+
+        public static List<RaycastResult> MouseRaycastResults()
+        {
+            PointerEventData cursor = new PointerEventData(EventSystem.current)
+            {
+                position = Input.mousePosition
+            };
+            List<RaycastResult> objectsHit = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(cursor, objectsHit);
+
+            return objectsHit;
+        }
     }
 
     /// <summary>

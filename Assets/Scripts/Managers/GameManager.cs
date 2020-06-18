@@ -1,14 +1,11 @@
 ﻿using My_Utils;
 using My_Utils.Audio;
 using UnityEngine;
-using UnityEngine.UI;
 
-public delegate void ReceiveAmount(int amount); 
+public delegate void ReceiveAmount(int amount);
 
-public class GameManager : MonoBehaviour
+public class GameManager : SingletonPermanent<GameManager>
 {
-    public static GameManager Instance { get; private set; }
-    
     public bool IsPlaying { get; private set; } = true;
 
     [Header("Game")]
@@ -30,7 +27,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// The atual money amount.
     /// </summary>
-    public int MoneyAmount 
+    public int MoneyAmount
     {
         get
         {
@@ -68,7 +65,7 @@ public class GameManager : MonoBehaviour
         }
     }
     private int _atualScore;
-    
+
 
     public void AddScore(int amount)
     {
@@ -85,18 +82,9 @@ public class GameManager : MonoBehaviour
         MoneyAmount += amount;
     }
 
-    private void Awake()
+    private void Start()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-            AudioManager.Instance.PlaySound("SoundTrack");
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        AudioManager.Instance.PlaySound("SoundTrack");
     }
 
     public void GameOver(RectTransform panelToFade, RectTransform panelToScale)
@@ -123,7 +111,7 @@ public class GameManager : MonoBehaviour
     {
         IsPlaying = true;
         AtualScore = 0;
-        MoneyAmount = _initialMoney;    
+        MoneyAmount = _initialMoney;
         Time.timeScale = 1f;
         SceneLoader.Instance.LoadScene(_gameSceneName, true);
     }

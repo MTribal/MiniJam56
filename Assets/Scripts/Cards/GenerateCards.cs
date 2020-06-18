@@ -2,7 +2,7 @@
 
 public class GenerateCards : MonoBehaviour
 {
-    [SerializeField] private GameObject _cardPrefab = default;
+    [SerializeField] private Card _cardPrefab = default;
     [SerializeField] private CardData[] _cards = default;
 
     private void Start()
@@ -14,10 +14,10 @@ public class GenerateCards : MonoBehaviour
     {
         for (int i = 0; i < _cards.Length; i++)
         {
-            GameObject cardPrefab = Instantiate(_cardPrefab, transform);
+            Card cardPrefab = Instantiate(_cardPrefab, transform);
             cardPrefab.name = "Card_" + i;
-            cardPrefab.GetComponentInChildren<BaseCard>().SetCardData(_cards[i]);
-            cardPrefab.GetComponentInChildren<DragableCard>().SetCardData(_cards[i]);
+            cardPrefab.StaticCard.Initialize(_cards[i]);
+            cardPrefab.DragableCard.Initialize(_cards[i]);
         }
     }
 }

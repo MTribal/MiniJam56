@@ -1,21 +1,16 @@
 ﻿using UnityEngine;
+using My_Utils;
 
-public class TileSlotManager : MonoBehaviour
+public class TileSlotManager : SingletonScene<TileSlotManager>
 {
     [SerializeField] private int _qttOfRanks = default;
     [SerializeField] private float _tileSize = default;
     [SerializeField] private LayerMask _tileSlotLayer = default;
 
-    public static TileSlotManager Instance { get; private set; }
     public int QttOfRanks { get => _qttOfRanks; }
     public int HigherRank { get => _qttOfRanks - 1; }
     public int LowerRank { get => 0; }
     public float TileSize { get => _tileSize; }
-
-    private void Awake()
-    {
-        if (Instance == null) Instance = this;
-    }
 
     public TileSlot GetTileSlot(Vector2 position)
     {

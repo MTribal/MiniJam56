@@ -4,22 +4,22 @@ using UnityEngine.UI;
 
 public class BaseCard : MonoBehaviour
 {
-    [SerializeField] protected CardData _cardData;
-
-    [SerializeField] protected Image _backgroundImage;
-    [SerializeField] protected Image _dounughtImage;
+    [SerializeField] private Image _backgroundImage = default;
+    [SerializeField] private Image _dounughtImage = default;
     [SerializeField] private TextMeshProUGUI _costText = default;
 
-    public virtual void SetCardData(CardData cardData)
+    public CardData CardData { get; private set; } = default;
+
+    public void Initialize(CardData cardData)
     {
-        _cardData = cardData;
+        CardData = cardData;
         Atualize();
     }
 
     private void Atualize()
     {
-        _backgroundImage.sprite = _cardData.background;
-        _dounughtImage.sprite = _cardData.image;
-        _costText.text = _cardData.cost.ToString();
+        _backgroundImage.sprite = CardData.background;
+        _dounughtImage.sprite = CardData.image;
+        _costText.text = CardData.cost.ToString();
     }
 }

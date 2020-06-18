@@ -1,42 +1,28 @@
 ﻿using My_Utils.Audio;
 using My_Utils.Lean_Tween;
+using My_Utils;
 using System;
 using UnityEngine;
 
-public class UI_Utils : MonoBehaviour
+public class UI_Utils : SingletonPermanent<UI_Utils>
 {
-    public static UI_Utils Instance;
-
-    [Header("Button Pressed Tween")]
+    [Header("Button Pressed Anim")]
     [SerializeField] private float _scaleTo = 0.9f;
     [SerializeField] private float _buttonAnimDuration = 0.1f;
+    public float DefaultButtonScaleTo { get => _scaleTo; }
+    public float DefaultButtonTweenDuration { get => _buttonAnimDuration; }
 
-    [Header("Panel Tween")]
+
+    [Header("Panel Anim")]
     [SerializeField] private float _panelNormalAlpha = 0.6f;
     [SerializeField] private float _panelTweenDuration = 0.5f;
     [SerializeField] private LeanTweenType _panelOpenTween = LeanTweenType.EaseInBack;
     [SerializeField] private LeanTweenType _panelCloseTween = LeanTweenType.EaseInBack;
-
-    public float DefaultButtonScaleTo { get => _scaleTo; }
-    public float DefaultButtonTweenDuration { get => _buttonAnimDuration; }
     public float DefaultPanelNormalAlpha { get => _panelNormalAlpha; }
     public float DefaultPanelTweenDuration { get => _panelTweenDuration; }
     public LeanTweenType DefaultPanelOpenTweenType { get => _panelOpenTween; }
     public LeanTweenType DefaultPanelCloseTweenType { get => _panelCloseTween; }
 
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            transform.parent = null;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
     public LTDescr ButtonPressedAnim(RectTransform button)
     {

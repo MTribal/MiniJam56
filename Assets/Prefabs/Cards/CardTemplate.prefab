@@ -157,6 +157,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3959344741243597622}
+  - component: {fileID: 8586393572113882370}
   m_Layer: 5
   m_Name: CardTemplate
   m_TagString: Untagged
@@ -187,6 +188,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8586393572113882370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3959344741243597623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9996378b9e1d48942bff394ef611143b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _staticCard: {fileID: 3959344742767473758}
+  _dragableCard: {fileID: 3959344742575200801}
 --- !u!1 &3959344741439131720
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,6 +829,7 @@ GameObject:
   - component: {fileID: 3959344742575200806}
   - component: {fileID: 3959344742575200800}
   - component: {fileID: 3959344742575200801}
+  - component: {fileID: 2922831270380420246}
   - component: {fileID: 3959344742575200803}
   m_Layer: 5
   m_Name: DragableCard
@@ -865,14 +881,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4ce79265e788b74288b7582bb748e6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cardData: {fileID: 0}
-  _backgroundImage: {fileID: 3959344741103849161}
-  _dounughtImage: {fileID: 3959344743088131583}
-  _costText: {fileID: 3959344741843712644}
   _grayFilter: {fileID: 3959344741439131720}
   _cooldownFilter: {fileID: 6398322053937455237}
   _previewDoughnutPref: {fileID: 101681240691054864, guid: 4ba4cddd6d1fc254f92937aebbe0f408,
     type: 3}
+--- !u!114 &2922831270380420246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3959344742575200807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fb80ec76483e1f43895f8a2ed57304f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _backgroundImage: {fileID: 3959344741103849161}
+  _dounughtImage: {fileID: 3959344743088131583}
+  _costText: {fileID: 3959344741843712644}
 --- !u!225 &3959344742575200803
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -947,7 +974,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fb80ec76483e1f43895f8a2ed57304f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cardData: {fileID: 0}
   _backgroundImage: {fileID: 3959344742974381699}
   _dounughtImage: {fileID: 3959344741917938367}
   _costText: {fileID: 3959344742083873006}

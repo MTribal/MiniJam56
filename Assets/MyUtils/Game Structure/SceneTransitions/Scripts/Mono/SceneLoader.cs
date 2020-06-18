@@ -7,11 +7,8 @@ namespace My_Utils
     /// <summary>
     /// Load scenes and trigger transitions effects when it exists.
     /// </summary>
-    public class SceneLoader : MonoBehaviour
+    public class SceneLoader : SingletonScene<SceneLoader>
     {
-        [HideInInspector]
-        public static SceneLoader Instance { get; private set; }
-
         [Tooltip("Mark to animate the initial scene of the game.")]
         public bool animateFirstTransition;
 
@@ -28,11 +25,11 @@ namespace My_Utils
 
         private void Awake()
         {
-            if (Instance != null)
+            if (!TransitionManager.InstanceIsNull)
             {
                 // Animate if LastTransitionType == true
                 transitionAnimator.speed = TransitionManager.Instance.LastAnimationRate;
-                transitionAnimator.SetBool("start_scene", TransitionManager.Instance.LastTransitionType == TransitionType.Animated && animateFirstTransition);
+                transitionAnimator.SetBool("start_scene", TransitionManager.Instance.LastTransitionType == TransitionType.Animated);
             }
             else
             {
@@ -40,7 +37,6 @@ namespace My_Utils
                 transitionAnimator.speed = transitionSettings.animationRate;
                 transitionAnimator.SetBool("start_scene", animateFirstTransition);
             }
-            Instance = this;
         }
 
         #region ReloadScene

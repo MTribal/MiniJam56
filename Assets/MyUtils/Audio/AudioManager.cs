@@ -3,25 +3,13 @@ using UnityEngine;
 
 namespace My_Utils.Audio
 {
-    public class AudioManager : MonoBehaviour
+    public class AudioManager : SingletonPermanent<AudioManager>
     {
-        public static AudioManager Instance;
-
         public Sound[] sounds;
 
-        private void Awake()
+        protected override void Awake()
         {
-            if (Instance == null)
-            {
-                transform.parent = null;
-                Instance = this;
-                DontDestroyOnLoad(gameObject);
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-
+            base.Awake();
             foreach (Sound sound in sounds)
             {
                 sound.source = gameObject.AddComponent<AudioSource>();
